@@ -1,0 +1,22 @@
+name: CI
+on: push
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependency
+        run: npm i
+      - name: Test
+        run: npm run test
+      - name: Build
+        run: |
+          npm run bundle
+          echo Bundle created!!
+      - name: Deploy
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          npm run deploy

@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "incremental": true,
+    "sourceMap": false,
+    "noImplicitAny": true,
+    "allowUnusedLabels": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "declaration": true,
+    "removeComments": false,
+    "experimentalDecorators": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "baseUrl": "."
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
