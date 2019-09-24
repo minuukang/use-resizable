@@ -1,7 +1,11 @@
 # use-resizable
 get resize value use react-hook from mousedown, mousemove, mouseup event (avaible touch event)
 
-# usage
+## demo
+
+https://codesandbox.io/s/funny-mcnulty-4f1j0
+
+## usage
 
 ```ts
 import * as React from "react";
