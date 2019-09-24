@@ -1,4 +1,10 @@
-export type ResizeDirection = 'left' | 'right' | 'up' | 'down';
+export type ResizeDirection =
+  | 'left'
+  | 'right'
+  | 'up'
+  | 'down'
+  | 'top'
+  | 'bottom';
 export type ResizeDirectionGroup = 'horizontal' | 'vertical';
 export type ResizableReducerActions =
   | { type: 'init'; payload: { size: number } }
@@ -26,6 +32,8 @@ export const directionGroupMap: Record<
   right: 'horizontal',
   up: 'vertical',
   down: 'vertical',
+  top: 'vertical',
+  bottom: 'vertical',
 };
 
 export const directionCalcMap: Record<ResizeDirection, number> = {
@@ -33,6 +41,8 @@ export const directionCalcMap: Record<ResizeDirection, number> = {
   right: 1,
   up: -1,
   down: 1,
+  top: -1,
+  bottom: 1,
 };
 
 export const windowEventTypes = [
