@@ -1,6 +1,6 @@
 {
   "name": "use-resizable",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "get resize value use react-hook from mousedown, mousemove, mouseup event (avaible touch event)",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -24,7 +24,7 @@
     "url": "https://github.com/MinuKang/use-resizable/issues"
   },
   "homepage": "https://github.com/MinuKang/use-resizable#readme",
-  "dependencies": {
+  "peerDependencies": {
     "@types/react": "^16.9.2",
     "react": "^16.9.0"
   },
