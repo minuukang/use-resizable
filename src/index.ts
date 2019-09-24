@@ -7,7 +7,7 @@ export default function useResizable(option: IResizableOption) {
   const ref = React.useRef<HTMLElement & HTMLDivElement>(null);
   const [state, dispatch] = React.useReducer(resizableReducer, option);
   const handleStartMove = React.useCallback(
-    (event: React.MouseEvent) => {
+    (event: React.MouseEvent | React.TouchEvent) => {
       dispatch(createActionFromEvent(group, event.nativeEvent));
     },
     [dispatch]
@@ -34,6 +34,7 @@ export default function useResizable(option: IResizableOption) {
       windowEventTypes.forEach((type) =>
         window.addEventListener(type, dispatchEvent)
       );
+      document.body.style.userSelect = 'none';
       document.body.style.cursor =
         group === 'vertical' ? 'row-resize' : 'col-resize';
     }
@@ -42,6 +43,7 @@ export default function useResizable(option: IResizableOption) {
         window.removeEventListener(type, dispatchEvent)
       );
       document.body.style.cursor = '';
+      document.body.style.userSelect = '';
     };
   }, [state.isMove, group, dispatch]);
   return {

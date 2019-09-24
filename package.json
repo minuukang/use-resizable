@@ -1,12 +1,12 @@
 {
   "name": "use-resizable",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "get resize value use react-hook from mousedown, mousemove, mouseup event (avaible touch event)",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "npx jest",
-    "bundle": "rm -rf ./dist && tsc --p tsconfig.json",
+    "bundle": "rm -rf ./dist && tsc --p tsconfig.json && cp ./package.json dist",
     "deploy": "semantic-release"
   },
   "repository": {
