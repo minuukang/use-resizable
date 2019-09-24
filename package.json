@@ -29,10 +29,13 @@
     "react": "^16.9.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "^7.0.16",
     "@types/jest": "^24.0.18",
     "@types/react-test-renderer": "^16.9.0",
+    "@types/semantic-release": "^15.13.0",
     "jest": "^24.9.0",
     "react-test-renderer": "^16.9.0",
+    "semantic-release": "^15.13.24",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   }

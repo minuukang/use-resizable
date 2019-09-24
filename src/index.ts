@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IResizableOption, directionGroupMap, windowEventTypes } from './types';
+export { IResizableOption } from './types';
 import { resizableReducer, createActionFromEvent } from './reducer';
 
 export default function useResizable(option: IResizableOption) {
