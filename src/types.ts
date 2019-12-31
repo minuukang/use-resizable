@@ -1,15 +1,11 @@
 export type ResizeDirection =
-  | 'left'
-  | 'right'
-  | 'up'
-  | 'down'
-  | 'top'
-  | 'bottom';
-export type ResizeDirectionGroup = 'horizontal' | 'vertical';
-export type ResizableReducerActions =
-  | { type: 'init'; payload: { size: number } }
-  | { type: 'start' | 'move'; payload: { position: number } }
-  | { type: 'end' };
+  | "left"
+  | "right"
+  | "up"
+  | "down"
+  | "top"
+  | "bottom";
+export type ResizeDirectionGroup = "horizontal" | "vertical";
 
 export interface IResizableOption {
   direction: ResizeDirection;
@@ -28,12 +24,12 @@ export const directionGroupMap: Record<
   ResizeDirection,
   ResizeDirectionGroup
 > = {
-  left: 'horizontal',
-  right: 'horizontal',
-  up: 'vertical',
-  down: 'vertical',
-  top: 'vertical',
-  bottom: 'vertical',
+  left: "horizontal",
+  right: "horizontal",
+  up: "vertical",
+  down: "vertical",
+  top: "vertical",
+  bottom: "vertical"
 };
 
 export const directionCalcMap: Record<ResizeDirection, number> = {
@@ -42,12 +38,12 @@ export const directionCalcMap: Record<ResizeDirection, number> = {
   up: -1,
   down: 1,
   top: -1,
-  bottom: 1,
+  bottom: 1
 };
 
 export const windowEventTypes = [
-  'mousemove',
-  'touchmove',
-  'mouseup',
-  'touchend',
+  "mousemove",
+  "touchmove",
+  "mouseup",
+  "touchend"
 ];

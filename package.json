@@ -1,6 +1,6 @@
 {
   "name": "use-resizable",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "get resize value use react-hook from mousedown, mousemove, mouseup event (avaible touch event)",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -14,6 +14,7 @@
     "url": "git+https://github.com/MinuKang/use-resizable.git"
   },
   "keywords": [
+    "react",
     "hook",
     "resizable",
     "resize"
@@ -34,9 +35,14 @@
     "@types/react-test-renderer": "^16.9.0",
     "@types/semantic-release": "^15.13.0",
     "jest": "^24.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-test-renderer": "^16.9.0",
     "semantic-release": "^15.13.24",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "use-reducer-action": "^1.0.0"
   }
 }

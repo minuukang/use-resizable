@@ -1,105 +1,76 @@
 import {
   IResizableState,
-  ResizableReducerActions,
   directionCalcMap,
-  ResizeDirectionGroup,
-} from './types';
+  ResizeDirectionGroup
+} from "./types";
+import { createReducerAction } from "use-reducer-action";
 
 function eventIsTouch(event: Event): event is TouchEvent {
-  return event.type.includes('touch');
+  return event.type.includes("touch");
 }
 
-function getPositionFromMouseOrTouch(
+export function getPositionFromMouseOrTouch(
   direction: ResizeDirectionGroup,
   event: MouseEvent | TouchEvent
 ) {
   if (eventIsTouch(event)) {
-    return direction === 'vertical'
+    return direction === "vertical"
       ? event.touches[0].screenY
       : event.touches[0].screenX;
   } else {
-    return direction === 'vertical' ? event.screenY : event.screenX;
+    return direction === "vertical" ? event.screenY : event.screenX;
   }
 }
 
-export function resizableReducer(
-  state: IResizableState,
-  action: ResizableReducerActions
-): IResizableState {
-  switch (action.type) {
-    case 'init': {
-      return {
-        ...state,
-        size: action.payload.size,
-      };
-    }
-    case 'start': {
-      return {
-        ...state,
-        isMove: true,
-        position: action.payload.position,
-        initSize: state.size,
-      };
-    }
-    case 'move': {
-      if (
-        !state.isMove ||
-        state.position === undefined ||
-        state.initSize === undefined
-      ) {
-        return state;
-      }
-      const calc = directionCalcMap[state.direction];
-      let size =
-        state.initSize + (action.payload.position - state.position) * calc;
-      if (state.maxSize && size > state.maxSize) {
-        size = state.maxSize;
-      }
-      if (state.minSize && size < state.minSize) {
-        size = state.minSize;
-      }
-      return {
-        ...state,
-        size,
-      };
-    }
-    case 'end': {
-      return {
-        ...state,
-        isMove: false,
-        initSize: undefined,
-      };
-    }
-    default: {
+const resizableActions = {
+  init(state: IResizableState, payload: { size: number }): IResizableState {
+    return {
+      ...state,
+      size: payload.size
+    };
+  },
+  start(
+    state: IResizableState,
+    payload: { position: number }
+  ): IResizableState {
+    return {
+      ...state,
+      isMove: true,
+      position: payload.position,
+      initSize: state.size
+    };
+  },
+  move(state: IResizableState, payload: { position: number }): IResizableState {
+    if (
+      !state.isMove ||
+      state.position === undefined ||
+      state.initSize === undefined
+    ) {
       return state;
     }
+    const calc = directionCalcMap[state.direction];
+    let size = state.initSize + (payload.position - state.position) * calc;
+    if (state.maxSize && size > state.maxSize) {
+      size = state.maxSize;
+    }
+    if (state.minSize && size < state.minSize) {
+      size = state.minSize;
+    }
+    return {
+      ...state,
+      size
+    };
+  },
+  end(state: IResizableState): IResizableState {
+    return {
+      ...state,
+      isMove: false,
+      initSize: undefined
+    };
   }
-}
+};
 
-export function createActionFromEvent(
-  direction: ResizeDirectionGroup,
-  event: MouseEvent | TouchEvent
-): ResizableReducerActions {
-  switch (event.type) {
-    case 'mousedown':
-    case 'touchstart':
-    case 'mousemove':
-    case 'touchmove': {
-      return {
-        type: event.type.includes('move') ? 'move' : 'start',
-        payload: {
-          position: getPositionFromMouseOrTouch(direction, event),
-        },
-      };
-    }
-    case 'mouseup':
-    case 'touchend': {
-      return {
-        type: 'end',
-      };
-    }
-    default: {
-      throw new Error(`${event.type} is not able to create event`);
-    }
-  }
-}
+export const useResizableReducer = createReducerAction<
+  IResizableState,
+  typeof resizableActions
+>(resizableActions);
